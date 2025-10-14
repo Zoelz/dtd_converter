@@ -1,0 +1,1 @@
+flask --app mockupserver:create_app run --debug -p 8000

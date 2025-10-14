@@ -1,0 +1,75 @@
+{
+    "@context": "https://www.w3.org/2022/wot/td/v1.1",
+    "version": {"model": "1.0.0"},
+    "id": "http://127.0.0.1:8000/Transporter::3D::Movable::Crane::Overhead::54066bef-4b83-4698-8317-bffa450bb5bf",
+    "@type": "Transporter::3D::Movable::Crane::Overhead",
+    "title": "Ilmatar",
+    "description": "Machine used for moving items within a DT Lab",
+    "links": [{
+        "rel": "parent",
+        "href": "http://127.0.0.1:8000/DesignatedArea::Room::Laboratory::9e051594-22a3-4dad-bcaf-2c72bdc407b3",
+        "type": "application/td+json"
+    },{
+        "rel": "manual",
+        "href": "https://tt.eduuni.fi/sites/aalto-ilmatar",
+        "type": "application/pdf"
+    }],
+    "properties": {
+        "Lifting_capacity":{
+            "type": "object",
+            "properties": {
+                "tonne": {
+                    "type": "float"
+                }
+            },
+            "forms": [{"href": "http://127.0.0.1:8000/capacity"}]
+        },
+        "Max_speed":{
+            "type": "object",
+            "properties": {
+                "m/s": {
+                    "type": "float"
+                }
+            },
+            "forms": [{"href": "http://127.0.0.1:8000/maxSpeed"}]
+        }
+    },
+    "actions": {
+        "drive_to":{
+            "input": {
+                "type": "object",
+                "properties": {
+                    "x": {
+                        "type": "float"
+                    },
+                    "y": {
+                        "type": "float"
+                    },
+                    "z": {
+                        "type": "float"
+                    }
+                }
+            },
+            "output": {
+                "type": "object",
+                "properties": {
+                    "success": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "forms": [{"href": "192.168.1.201:8001/driveTo"}]
+        },
+        "Carrying_status":{
+            "output": {
+                "type": "object",
+                "properties": {
+                    "active": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "forms": [{"href": "192.168.1.201:8001/carryingStatus"}]
+        }
+    } 
+}
