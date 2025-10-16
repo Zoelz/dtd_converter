@@ -710,79 +710,102 @@ def empty_all():
 
 def test1():
     import time
+    import statistics 
 
     elapsed_times = []
     for i in range(100):
         empty_all()
-        start_time = time.time_ns()
+        start_time = time.perf_counter()
         c = Converter()
         c.aasx_read("Ilmatar_AAS_new.aasx")
         c.aas_write()
-        end_time = time.time_ns()
+        end_time = time.perf_counter()
         elapsed_times.append(end_time - start_time)
 
     avg = sum(elapsed_times) / len(elapsed_times)
-    print(f"Avg time: {avg} nanoseconds")
-
+    print(f"Avg time: {avg*1000} milliseconds")
+    print(f"Median time: {statistics.median(elapsed_times)*1000} milliseconds")
+    print(f"Min time: {min(elapsed_times)*1000} milliseconds")
+    print(f"Max time: {max(elapsed_times)*1000} milliseconds")
+    print(f"Standard deviation time: {statistics.stdev(elapsed_times)*1000} milliseconds")
 
 def test2():
     import time
+    import statistics 
 
     elapsed_times = []
     for i in range(100):
         empty_all()
-        start_time = time.time_ns()
+        start_time = time.perf_counter()
         c = Converter()
         c.wot_read("Ilmatar_WoT.json")
         c.wot_write()
-        end_time = time.time_ns()
+        end_time = time.perf_counter()
         elapsed_times.append(end_time - start_time)
 
     avg = sum(elapsed_times) / len(elapsed_times)
-    print(f"Avg time: {avg} nanoseconds")
+    print(f"Avg time: {avg*1000} milliseconds")
+    print(f"Median time: {statistics.median(elapsed_times)*1000} milliseconds")
+    print(f"Min time: {min(elapsed_times)*1000} milliseconds")
+    print(f"Max time: {max(elapsed_times)*1000} milliseconds")
+    print(f"Standard deviation time: {statistics.stdev(elapsed_times)*1000} milliseconds")
 
 
 
 def test3():
     import time
+    import statistics 
 
     elapsed_times = []
     for i in range(100):
         empty_all()
-        start_time = time.time_ns()
+        start_time = time.perf_counter()
         c = Converter()
         c.aasx_read("Ilmatar_AAS_new.aasx")
         tmp = c.wot_write()
         c2 = Converter()
         c2.wot_read(tmp)
         c2.aas_write()
-        end_time = time.time_ns()
+        end_time = time.perf_counter()
         elapsed_times.append(end_time - start_time)
 
     avg = sum(elapsed_times) / len(elapsed_times)
-    print(f"Avg time: {avg} nanoseconds")
+    print(f"Avg time: {avg*1000} milliseconds")
+    print(f"Median time: {statistics.median(elapsed_times)*1000} milliseconds")
+    print(f"Min time: {min(elapsed_times)*1000} milliseconds")
+    print(f"Max time: {max(elapsed_times)*1000} milliseconds")
+    print(f"Standard deviation time: {statistics.stdev(elapsed_times)*1000} milliseconds")
 
 
 def test4():
     import time
+    import statistics 
 
     elapsed_times = []
     for i in range(100):
         empty_all()
-        start_time = time.time_ns()
+        start_time = time.perf_counter()
         c = Converter()
         c.wot_read("Ilmatar_WoT.json")
         tmp = c.aas_write()
         c2 = Converter()
         c2.aasx_read(tmp)
         c2.wot_write()
-        end_time = time.time_ns()
+        end_time = time.perf_counter()
         elapsed_times.append(end_time - start_time)
 
     avg = sum(elapsed_times) / len(elapsed_times)
-    print(f"Avg time: {avg} nanoseconds")
+    print(f"Avg time: {avg*1000} milliseconds")
+    print(f"Median time: {statistics.median(elapsed_times)*1000} milliseconds")
+    print(f"Min time: {min(elapsed_times)*1000} milliseconds")
+    print(f"Max time: {max(elapsed_times)*1000} milliseconds")
+    print(f"Standard deviation time: {statistics.stdev(elapsed_times)*1000} milliseconds")
 
+print("AAS -> AAS")
 test1()
+print("WoT TD -> WoT TD")
 test2()
+print("AAS -> WoT TD -> AAS")
 test3()
+print("WoT TD -> AAS -> WoT TD")
 test4()
